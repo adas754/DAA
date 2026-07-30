@@ -1,0 +1,60 @@
+student's eca student's parent's income cgpa viva_score coding_score salary
+no of column is more 
+r squared will be more
+
+adjusted r2
+one way anova
+
+A DOCTOR wants to test a new 
+medicine reduce headaches
+participants are divided into 
+3 conditions(15mg,30mg,45 mg)
+later each patient rates their
+heaace on a scale of 1 to 10
+using alpha =0.05 determine
+whether there is any differnce 
+the condition?
+15mg 30mg 45mg
+9     7    4
+8     6    3
+7     6    2
+8     7    3
+8     8    4
+9     7    3
+8     6    2    15mg=57  30mg=47 45 mg=21
+null hypo       467+319+67=853
+U15=u30=u45
+alternative
+atleat one mean is not equal
+
+alpha =0.05
+
+N=21
+a=3
+n=7
+dof (between)=a-1
+=3-1
+=2
+dof(within)=N-a
+=21-3=18
+(df between,df within)=(2,18)
+according to our data value is 3.55
+https://statstudyhub.com/f-distribution-table/
+ssbetween=57^2+47^2+21^2/7-(57+47+21)^2/21
+=98.67
+sswithin=853-842.71
+=10.29
+between 98.67  2  98.67/2=49.34
+within   10.29  18  10.28/18=0.571
+total    108.96  20
+
+F= variance between sample/ variance within
+sample
+=49.34/0.57
+=86.4
+86.4>3.55
+reject null hypo
+
+
+
+
