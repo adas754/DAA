@@ -30,6 +30,9 @@
 =COUNTIFS(Table_1[Category],"Electronics",Table_1[Region],"North")
 
 =COUNTA(Table_1[Product])
+
 =COUNT(Table_1[Price])
+
 =MIN(Table_1[Price])
+
 =MAX(Table_1[Price])
