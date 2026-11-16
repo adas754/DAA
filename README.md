@@ -1,2 +1,21 @@
 # numpy
 # xlookup - https://github.com/adas754/DAA/blob/main/30_basic_xlookup_questions.txt
+=SUM(Table_2[Sales])
+=SUMIF(Table_2[Department],"Marketing",Table_2[Sales])
+=SUMIFS(Table_2[Sales],Table_2[Department],"Sales",Table_2[Region],"East")
+=COUNTIF(Table_2[Department],"Marketing")
+=COUNTIFS(Table_2[Department],"HR",Table_2[Region],"North")
+=COUNTA(Table_2[Department])
+=COUNT(Table_2[Sales])
+=AVERAGE(Table_2[Sales])
+==MIN(Table_2[Sales])
+=MAX(Table_2[Sales])
+=SUMIF(Table_1[Category],"Electronics",Table_1[Price])
+=SUMIFS(Table_1[Price],Table_1[Category],"Electronics",Table_1[Region],
+"South")
+=COUNTIF(Table_1[Category],"Accessories")
+=COUNTIFS(Table_1[Category],"Electronics",Table_1[Region],"North")
+=COUNTA(Table_1[Product])
+=COUNT(Table_1[Price])
+=MIN(Table_1[Price])
+=MAX(Table_1[Price])
