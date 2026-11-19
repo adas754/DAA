@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One-Way ANOVA Test – Medicine Dosage and Headache Ratings</title>
+<style>
+  :root{
+    --bg:#f5f7fb;
+    --card:#ffffff;
+    --text:#1f2937;
+    --muted:#667085;
+    --border:#dfe4ea;
+    --accent:#3157d5;
+    --accent-soft:#eef2ff;
+    --success:#087443;
+    --success-soft:#ecfdf3;
+    --warning:#9a6700;
+    --warning-soft:#fff8e6;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.65;
+  }
+  .container{max-width:1100px;margin:auto;padding:32px 20px 60px}
+  header{
+    background:linear-gradient(135deg,#243b8f,#3157d5);
+    color:white;
+    border-radius:18px;
+    padding:38px 34px;
+    margin-bottom:24px;
+    box-shadow:0 12px 30px rgba(49,87,213,.18);
+  }
+  h1{margin:0 0 10px;font-size:34px;line-height:1.2}
+  h2{margin-top:0;font-size:25px}
+  h3{font-size:19px;margin-top:28px}
+  .subtitle{font-size:17px;opacity:.93}
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:26px;
+    margin:20px 0;
+    box-shadow:0 4px 12px rgba(16,24,40,.04);
+  }
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .metric{
+    background:var(--accent-soft);
+    border:1px solid #dce4ff;
+    border-radius:12px;
+    padding:18px;
+  }
+  .metric strong{display:block;font-size:25px;color:var(--accent)}
+  .metric span{color:var(--muted);font-size:14px}
+  table{width:100%;border-collapse:collapse;margin:16px 0;font-size:15px}
+  th,td{border:1px solid var(--border);padding:11px 12px;text-align:center}
+  th{background:#f0f3f8;font-weight:700}
+  .left{text-align:left}
+  .formula{
+    background:#f8fafc;
+    border-left:4px solid var(--accent);
+    padding:15px 18px;
+    margin:14px 0;
+    overflow-x:auto;
+    font-family:"Courier New",monospace;
+  }
+  .result{
+    background:var(--success-soft);
+    border:1px solid #b7ebce;
+    color:var(--success);
+    border-radius:13px;
+    padding:20px;
+    margin-top:18px;
+  }
+  .important{
+    background:var(--warning-soft);
+    border:1px solid #f1d68a;
+    border-radius:13px;
+    padding:18px;
+  }
+  .tag{
+    display:inline-block;padding:4px 9px;border-radius:999px;
+    background:#e8eefc;color:#2745a0;font-size:12px;font-weight:bold;
+    margin-right:6px;
+  }
+  .step{
+    color:white;background:var(--accent);border-radius:50%;
+    width:32px;height:32px;display:inline-flex;
+    align-items:center;justify-content:center;margin-right:9px;font-weight:bold;
+  }
+  .small{color:var(--muted);font-size:14px}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  ul,ol{padding-left:24px}
+  .footer{text-align:center;color:var(--muted);font-size:13px;margin-top:35px}
+  @media(max-width:760px){
+    .grid,.two-col{grid-template-columns:1fr}
+    header{padding:28px 22px}
+    h1{font-size:28px}
+    .card{padding:20px}
+    table{font-size:13px}
+    th,td{padding:8px 6px}
+  }
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+  <h1>One-Way ANOVA Test</h1>
+  <div class="subtitle">
+    Testing whether three medicine dosages produce different mean headache ratings
+  </div>
+</header>
+
+<section class="card">
+  <h2>1. Problem Statement</h2>
+  <p>
+    A doctor wants to determine whether the dosage of a new medicine affects patients'
+    headache ratings. Participants are divided into three independent dosage groups:
+    <strong>15 mg</strong>, <strong>30 mg</strong>, and <strong>45 mg</strong>.
+    After treatment, each participant gives a headache rating from <strong>1 to 10</strong>,
+    where a higher score represents a more severe headache.
+  </p>
+
+  <div class="grid">
+    <div class="metric"><strong>3</strong><span>Dosage conditions</span></div>
+    <div class="metric"><strong>21</strong><span>Total observations</span></div>
+    <div class="metric"><strong>0.05</strong><span>Significance level α</span></div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>2. Observed Data</h2>
+  <table>
+    <thead>
+      <tr><th>Observation</th><th>15 mg</th><th>30 mg</th><th>45 mg</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>9</td><td>7</td><td>4</td></tr>
+      <tr><td>2</td><td>8</td><td>6</td><td>3</td></tr>
+      <tr><td>3</td><td>7</td><td>6</td><td>2</td></tr>
+      <tr><td>4</td><td>8</td><td>7</td><td>3</td></tr>
+      <tr><td>5</td><td>8</td><td>8</td><td>4</td></tr>
+      <tr><td>6</td><td>9</td><td>7</td><td>3</td></tr>
+      <tr><td>7</td><td>8</td><td>6</td><td>2</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="card">
+  <h2>3. Why Use One-Way ANOVA?</h2>
+  <p>
+    A one-way Analysis of Variance (ANOVA) is appropriate because there is
+    <strong>one categorical independent variable</strong>—medicine dosage—with
+    <strong>three levels</strong> (15 mg, 30 mg, and 45 mg), and the outcome is a
+    numerical headache rating.
+  </p>
+  <p>
+    Instead of performing several separate t-tests, ANOVA evaluates all three group
+    means together while controlling the overall significance level.
+  </p>
+
+  <div class="important">
+    <strong>Important:</strong> ANOVA tests whether the group means are all equal or
+    whether at least one mean differs. A significant ANOVA by itself does not identify
+    exactly which pairs of groups differ; a post-hoc test such as Tukey's HSD would be
+    used for that purpose.
+  </div>
+</section>
+
+<section class="card">
+  <h2>4. Step 1 – State the Hypotheses</h2>
+
+  <h3>Null Hypothesis (H₀)</h3>
+  <p>
+    The mean headache ratings are equal for all three dosage groups.
+  </p>
+  <div class="formula">H₀: μ₁₅ = μ₃₀ = μ₄₅</div>
+
+  <h3>Alternative Hypothesis (H₁)</h3>
+  <p>
+    At least one population mean headache rating is different from the others.
+  </p>
+  <div class="formula">H₁: At least one of the three population means is different.</div>
+</section>
+
+<section class="card">
+  <h2>5. Step 2 – Significance Level</h2>
+  <p>
+    The question specifies:
+  </p>
+  <div class="formula">α = 0.05</div>
+  <p>
+    This means we use a 5% significance level. If the evidence against H₀ is strong
+    enough that the probability of obtaining such evidence under H₀ is less than 0.05,
+    we reject H₀.
+  </p>
+</section>
+
+<section class="card">
+  <h2>6. Step 3 – Calculate the Group Totals and Means</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Group</th><th>n</th><th>Sum (Tᵢ)</th><th>Mean</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>15 mg</td><td>7</td><td>57</td><td>57 ÷ 7 = <strong>8.1429</strong></td></tr>
+      <tr><td>30 mg</td><td>7</td><td>47</td><td>47 ÷ 7 = <strong>6.7143</strong></td></tr>
+      <tr><td>45 mg</td><td>7</td><td>21</td><td>21 ÷ 7 = <strong>3.0000</strong></td></tr>
+    </tbody>
+  </table>
+
+  <h3>15 mg Group</h3>
+  <div class="formula">
+    T₁ = 9 + 8 + 7 + 8 + 8 + 9 + 8 = 57<br>
+    x̄₁ = 57 / 7 = 8.1429
+  </div>
+
+  <h3>30 mg Group</h3>
+  <div class="formula">
+    T₂ = 7 + 6 + 6 + 7 + 8 + 7 + 6 = 47<br>
+    x̄₂ = 47 / 7 = 6.7143
+  </div>
+
+  <h3>45 mg Group</h3>
+  <div class="formula">
+    T₃ = 4 + 3 + 2 + 3 + 4 + 3 + 2 = 21<br>
+    x̄₃ = 21 / 7 = 3.0000
+  </div>
+
+  <h3>Grand Total and Grand Mean</h3>
+  <div class="formula">
+    T = 57 + 47 + 21 = 125<br>
+    N = 7 + 7 + 7 = 21<br>
+    Grand Mean = 125 / 21 = <strong>5.9524</strong>
+  </div>
+</section>
+
+<section class="card">
+  <h2>7. Step 4 – Degrees of Freedom</h2>
+
+  <p>There are:</p>
+  <ul>
+    <li><strong>a = 3</strong> groups</li>
+    <li><strong>N = 21</strong> total observations</li>
+  </ul>
+
+  <h3>Between-Groups Degrees of Freedom</h3>
+  <div class="formula">
+    df_between = a − 1<br>
+    = 3 − 1<br>
+    = <strong>2</strong>
+  </div>
+
+  <h3>Within-Groups Degrees of Freedom</h3>
+  <div class="formula">
+    df_within = N − a<br>
+    = 21 − 3<br>
+    = <strong>18</strong>
+  </div>
+
+  <h3>Total Degrees of Freedom</h3>
+  <div class="formula">
+    df_total = N − 1<br>
+    = 21 − 1<br>
+    = <strong>20</strong>
+  </div>
+</section>
+
+<section class="card">
+  <h2>8. Step 5 – Calculate Sum of Squares Between Groups</h2>
+
+  <p>
+    The between-groups sum of squares measures how much the three group means differ
+    from the overall grand mean.
+  </p>
+
+  <div class="formula">
+    SS_between = Σ(Tᵢ² / nᵢ) − (T² / N)
+  </div>
+
+  <p>Substitute the values:</p>
+
+  <div class="formula">
+    SS_between =
+    (57² / 7) + (47² / 7) + (21² / 7) − (125² / 21)<br><br>
+    = 3249/7 + 2209/7 + 441/7 − 15625/21<br><br>
+    = 464.1429 + 315.5714 + 63.0000 − 744.0476<br><br>
+    = <strong>98.6667</strong>
+  </div>
+</section>
+
+<section class="card">
+  <h2>9. Step 6 – Calculate Total Sum of Squares</h2>
+
+  <p>
+    First, square every observation and add the squared values.
+  </p>
+
+  <div class="formula">
+    ΣX² = 853
+  </div>
+
+  <p>
+    The computational formula for total sum of squares is:
+  </p>
+
+  <div class="formula">
+    SS_total = ΣX² − (T² / N)
+  </div>
+
+  <div class="formula">
+    SS_total = 853 − (125² / 21)<br>
+    = 853 − 744.0476<br>
+    = <strong>108.9524</strong>
+  </div>
+</section>
+
+<section class="card">
+  <h2>10. Step 7 – Calculate Sum of Squares Within Groups</h2>
+
+  <p>
+    The within-groups sum of squares represents variation among individuals inside
+    their respective dosage groups.
+  </p>
+
+  <div class="formula">
+    SS_within = SS_total − SS_between
+  </div>
+
+  <div class="formula">
+    SS_within = 108.9524 − 98.6667<br>
+    = <strong>10.2857</strong>
+  </div>
+
+  <p>
+    This value can also be obtained by calculating the squared deviations from each
+    group's own mean and adding them together.
+  </p>
+</section>
+
+<section class="card">
+  <h2>11. Step 8 – Calculate Mean Squares</h2>
+
+  <h3>Mean Square Between Groups</h3>
+  <div class="formula">
+    MS_between = SS_between / df_between<br>
+    = 98.6667 / 2<br>
+    = <strong>49.3333</strong>
+  </div>
+
+  <h3>Mean Square Within Groups</h3>
+  <div class="formula">
+    MS_within = SS_within / df_within<br>
+    = 10.2857 / 18<br>
+    = <strong>0.5714</strong>
+  </div>
+</section>
+
+<section class="card">
+  <h2>12. Step 9 – Calculate the F Statistic</h2>
+
+  <p>
+    The F statistic compares variation between the group means with the variation
+    within the groups.
+  </p>
+
+  <div class="formula">
+    F = MS_between / MS_within
+  </div>
+
+  <div class="formula">
+    F = 49.3333 / 0.5714<br>
+    = <strong>86.3333</strong>
+  </div>
+
+  <p>
+    The very large F value indicates that the differences among the dosage-group means
+    are large relative to the variation among observations within the groups.
+  </p>
+</section>
+
+<section class="card">
+  <h2>13. Complete ANOVA Table</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Source of Variation</th>
+        <th>SS</th>
+        <th>df</th>
+        <th>MS</th>
+        <th>F</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="left">Between Groups</td>
+        <td>98.6667</td>
+        <td>2</td>
+        <td>49.3333</td>
+        <td><strong>86.3333</strong></td>
+      </tr>
+      <tr>
+        <td class="left">Within Groups (Error)</td>
+        <td>10.2857</td>
+        <td>18</td>
+        <td>0.5714</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td class="left"><strong>Total</strong></td>
+        <td><strong>108.9524</strong></td>
+        <td><strong>20</strong></td>
+        <td>—</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="card">
+  <h2>14. Step 10 – Critical F Value</h2>
+
+  <p>
+    For a significance level of α = 0.05, with:
+  </p>
+  <ul>
+    <li>Numerator degrees of freedom = 2</li>
+    <li>Denominator degrees of freedom = 18</li>
+  </ul>
+
+  <p>
+    The upper-tail critical value is approximately:
+  </p>
+
+  <div class="formula">
+    F_critical(2, 18; α = 0.05) ≈ <strong>3.5546</strong>
+  </div>
+
+  <h3>Decision Rule</h3>
+  <div class="formula">
+    If F_calculated &gt; F_critical → Reject H₀<br>
+    If F_calculated ≤ F_critical → Fail to reject H₀
+  </div>
+</section>
+
+<section class="card">
+  <h2>15. Step 11 – Compare the Calculated F With the Critical F</h2>
+
+  <table>
+    <thead>
+      <tr><th>Value</th><th>Result</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>F calculated</td><td><strong>86.3333</strong></td></tr>
+      <tr><td>F critical</td><td><strong>3.5546</strong></td></tr>
+      <tr><td>Comparison</td><td><strong>86.3333 &gt; 3.5546</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="result">
+    <strong>Decision: Reject H₀.</strong><br>
+    The calculated F statistic is much larger than the critical F value.
+  </div>
+</section>
+
+<section class="card">
+  <h2>16. P-Value Interpretation</h2>
+
+  <p>
+    For F = 86.3333 with (2, 18) degrees of freedom, the p-value is approximately:
+  </p>
+
+  <div class="formula">
+    p ≈ 5.96 × 10⁻¹⁰
+  </div>
+
+  <p>
+    This is far smaller than α = 0.05:
+  </p>
+
+  <div class="formula">
+    p &lt; 0.05
+  </div>
+
+  <p>
+    Therefore, the p-value method gives the same decision: <strong>reject H₀</strong>.
+  </p>
+</section>
+
+<section class="card">
+  <h2>17. Group Means and What They Tell Us</h2>
+
+  <table>
+    <thead>
+      <tr><th>Dosage</th><th>Mean Headache Rating</th><th>Interpretation</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>15 mg</td><td><strong>8.1429</strong></td><td>Highest average headache rating</td></tr>
+      <tr><td>30 mg</td><td><strong>6.7143</strong></td><td>Intermediate average headache rating</td></tr>
+      <tr><td>45 mg</td><td><strong>3.0000</strong></td><td>Lowest average headache rating</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    Descriptively, the average headache rating decreases as the dosage increases:
+    approximately <strong>8.14 → 6.71 → 3.00</strong>.
+  </p>
+
+  <p>
+    Because higher headache ratings indicate more severe headaches, these sample
+    results suggest that the <strong>45 mg dosage is associated with the lowest
+    average headache rating</strong>.
+  </p>
+</section>
+
+<section class="card">
+  <h2>18. Final Conclusion</h2>
+
+  <div class="result">
+    <strong>Final statistical conclusion:</strong><br><br>
+    At the 5% significance level, there is statistically significant evidence that
+    the mean headache rating is not the same across all three medicine dosage groups.
+    Therefore, the null hypothesis that the three population means are equal is
+    rejected.
+  </div>
+
+  <p>
+    In practical terms, the observed data provide strong evidence that medicine dosage
+    is related to headache ratings in this experiment. The sample means indicate that
+    the 45 mg group had the lowest average headache rating, followed by the 30 mg
+    group, while the 15 mg group had the highest average headache rating.
+  </p>
+</section>
+
+<section class="card">
+  <h2>19. Important Note About “Which Groups Differ?”</h2>
+
+  <p>
+    The one-way ANOVA answers the question:
+    <strong>“Is there evidence that at least one group mean differs?”</strong>
+  </p>
+
+  <p>
+    It does not, by itself, formally test every pair of groups. If the assignment asks
+    which specific dosages differ from each other, a post-hoc procedure such as
+    <strong>Tukey's HSD</strong> should be performed after the significant ANOVA.
+  </p>
+
+  <p>
+    Based on the very large overall F statistic and the clearly separated sample means,
+    the groups appear substantially different, but a formal pairwise conclusion should
+    be based on an appropriate post-hoc test.
+  </p>
+</section>
+
+<section class="card">
+  <h2>20. Assumptions of One-Way ANOVA</h2>
+
+  <p>For the standard one-way ANOVA, the following assumptions are generally made:</p>
+
+  <ol>
+    <li>
+      <strong>Independence:</strong> The observations within and between groups should
+      be independent of one another.
+    </li>
+    <li>
+      <strong>Normality:</strong> The outcome should be approximately normally
+      distributed within each population, especially important for small samples.
+    </li>
+    <li>
+      <strong>Homogeneity of variance:</strong> The population variances of the groups
+      should be approximately equal.
+    </li>
+  </ol>
+
+  <p>
+    The calculations above perform the requested ANOVA. Whether the assumptions are
+    scientifically reasonable depends on how the participants were selected and how
+    the experiment was conducted.
+  </p>
+</section>
+
+<section class="card">
+  <h2>21. Compact Answer for an Exam</h2>
+
+  <div class="formula">
+    H₀: μ₁₅ = μ₃₀ = μ₄₅<br>
+    H₁: At least one mean differs<br><br>
+
+    α = 0.05<br>
+    df_between = 2<br>
+    df_within = 18<br><br>
+
+    SS_between = 98.6667<br>
+    SS_within = 10.2857<br>
+    SS_total = 108.9524<br><br>
+
+    MS_between = 49.3333<br>
+    MS_within = 0.5714<br><br>
+
+    F_calculated = 86.3333<br>
+    F_critical = 3.5546<br><br>
+
+    Since 86.3333 &gt; 3.5546, reject H₀.
+  </div>
+
+  <div class="result">
+    <strong>Answer:</strong> There is a statistically significant difference in mean
+    headache ratings among the 15 mg, 30 mg, and 45 mg dosage groups at α = 0.05.
+  </div>
+</section>
+
+<section class="card">
+  <h2>22. Calculation Check</h2>
+  <p>
+    A useful consistency check is:
+  </p>
+  <div class="formula">
+    SS_total = SS_between + SS_within<br>
+    108.9524 ≈ 98.6667 + 10.2857<br>
+    108.9524 ≈ 108.9524 ✓
+  </div>
+
+  <p>
+    This confirms that the ANOVA sums of squares are internally consistent.
+  </p>
+</section>
+
+<div class="footer">
+  One-Way ANOVA worked solution • α = 0.05 • 21 observations • 3 dosage groups
+</div>
+
+</div>
+</body>
+</html>
