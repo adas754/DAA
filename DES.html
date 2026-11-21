@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Descriptive Statistics - Complete Solution</title>
+
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.6;
+        background: #f4f7fb;
+        color: #222;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 30px auto;
+        background: white;
+        padding: 35px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.10);
+    }
+
+    h1 {
+        text-align: center;
+        color: #17365d;
+        border-bottom: 3px solid #17365d;
+        padding-bottom: 15px;
+    }
+
+    h2 {
+        color: #1f4e79;
+        margin-top: 35px;
+        border-left: 5px solid #1f4e79;
+        padding-left: 10px;
+    }
+
+    h3 {
+        color: #2f5597;
+    }
+
+    .question {
+        background: #eaf2f8;
+        border-left: 5px solid #1f4e79;
+        padding: 18px;
+        margin: 20px 0;
+        border-radius: 6px;
+    }
+
+    .answer {
+        background: #eaf7ea;
+        border-left: 5px solid #2e7d32;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 6px;
+    }
+
+    .formula {
+        background: #fff8e1;
+        border: 1px solid #f0c36d;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 6px;
+        font-family: "Times New Roman", serif;
+        font-size: 18px;
+    }
+
+    .calculation {
+        background: #f8f9fa;
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 6px;
+        font-family: "Times New Roman", serif;
+        font-size: 18px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+
+    th {
+        background: #1f4e79;
+        color: white;
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+
+    td {
+        padding: 9px;
+        border: 1px solid #ddd;
+        text-align: center;
+    }
+
+    tr:nth-child(even) {
+        background: #f2f2f2;
+    }
+
+    .result {
+        font-size: 20px;
+        font-weight: bold;
+        color: #1b5e20;
+    }
+
+    .interpretation {
+        background: #f3e5f5;
+        border-left: 5px solid #7b1fa2;
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    .summary {
+        background: #dbeafe;
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 30px;
+    }
+
+    .footer {
+        text-align: center;
+        margin-top: 40px;
+        color: #666;
+        font-size: 14px;
+    }
+
+    code {
+        background: #eee;
+        padding: 2px 5px;
+        border-radius: 3px;
+    }
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Descriptive Statistics – Complete Manual Solution</h1>
+
+<div class="question">
+    <h2>QUESTION</h2>
+
+```
+<p>
+    Calculate the following descriptive statistics manually for the
+    given dataset:
+</p>
+
+<p><strong>Data:</strong></p>
+
+<p style="font-size:22px; text-align:center;">
+    3, 5, 7, 9, 13, 19
+</p>
+
+<p>Calculate:</p>
+
+<ol>
+    <li>Mean</li>
+    <li>Standard Error</li>
+    <li>Median</li>
+    <li>Mode</li>
+    <li>Standard Deviation</li>
+    <li>Sample Variance</li>
+    <li>Kurtosis</li>
+    <li>Skewness</li>
+    <li>Range</li>
+    <li>Minimum</li>
+    <li>Maximum</li>
+    <li>Sum</li>
+    <li>Count</li>
+</ol>
+```
+
+</div>
+
+<h2>1. Given Data</h2>
+
+<table>
+    <tr>
+        <th>Observation</th>
+        <th>Value (x)</th>
+    </tr>
+    <tr><td>1</td><td>3</td></tr>
+    <tr><td>2</td><td>5</td></tr>
+    <tr><td>3</td><td>7</td></tr>
+    <tr><td>4</td><td>9</td></tr>
+    <tr><td>5</td><td>13</td></tr>
+    <tr><td>6</td><td>19</td></tr>
+</table>
+
+<p>
+    Number of observations:
+    <strong>n = 6</strong>
+</p>
+
+<h2>2. Sum</h2>
+
+<div class="formula">
+    Sum = Σx
+</div>
+
+<div class="calculation">
+    Σx = 3 + 5 + 7 + 9 + 13 + 19
+</div>
+
+<div class="calculation">
+    Σx = 56
+</div>
+
+<div class="answer">
+    <span class="result">Answer: Sum = 56</span>
+</div>
+
+<h2>3. Count</h2>
+
+<div class="calculation">
+    n = 6
+</div>
+
+<div class="answer">
+    <span class="result">Answer: Count = 6</span>
+</div>
+
+<h2>4. Mean</h2>
+
+<div class="formula">
+    Mean = x̄ = Σx / n
+</div>
+
+<div class="calculation">
+    x̄ = 56 / 6
+</div>
+
+<div class="calculation">
+    x̄ = 9.333333
+</div>
+
+<div class="answer">
+    <span class="result">Answer: Mean = 9.3333</span>
+</div>
+
+<h2>5. Median</h2>
+
+<p>The data are already arranged in ascending order:</p>
+
+<p style="text-align:center; font-size:20px;">
+    3, 5, 7, 9, 13, 19
+</p>
+
+<p>
+    Since there are 6 observations, the median is the average of the
+    3rd and 4th observations.
+</p>
+
+<div class="formula">
+    Median = (3rd value + 4th value) / 2
+</div>
+
+<div class="calculation">
+    Median = (7 + 9) / 2
+</div>
+
+<div class="calculation">
+    Median = 16 / 2 = 8
+</div>
+
+<div class="answer">
+    <span class="result">Answer: Median = 8</span>
+</div>
+
+<h2>6. Mode</h2>
+
+<p>
+    The values are:
+    3, 5, 7, 9, 13, 19.
+</p>
+
+<p>
+    Each value occurs only once. Therefore, no value has the highest
+    frequency.
+</p>
+
+<div class="answer">
+    <span class="result">Answer: No Mode</span>
+</div>
+
+<h2>7. Minimum and Maximum</h2>
+
+<div class="calculation">
+    Minimum = 3
+</div>
+
+<div class="calculation">
+    Maximum = 19
+</div>
+
+<div class="answer">
+    <p class="result">Minimum = 3</p>
+    <p class="result">Maximum = 19</p>
+</div>
+
+<h2>8. Range</h2>
+
+<div class="formula">
+    Range = Maximum − Minimum
+</div>
+
+<div class="calculation">
+    Range = 19 − 3
+</div>
+
+<div class="calculation">
+    Range = 16
+</div>
+
+<div class="answer">
+    <span class="result">Answer: Range = 16</span>
+</div>
+
+<h2>9. Deviations from the Mean</h2>
+
+<p>
+    The mean is:
+</p>
+
+<p style="text-align:center;">
+    x̄ = 9.333333
+</p>
+
+<table>
+    <tr>
+        <th>x</th>
+        <th>x − x̄</th>
+        <th>(x − x̄)²</th>
+        <th>(x − x̄)³</th>
+        <th>(x − x̄)⁴</th>
+    </tr>
+
+```
+<tr>
+    <td>3</td>
+    <td>-6.3333</td>
+    <td>40.1111</td>
+    <td>-254.0370</td>
+    <td>1608.2346</td>
+</tr>
+
+<tr>
+    <td>5</td>
+    <td>-4.3333</td>
+    <td>18.7778</td>
+    <td>-81.3704</td>
+    <td>352.6049</td>
+</tr>
+
+<tr>
+    <td>7</td>
+    <td>-2.3333</td>
+    <td>5.4444</td>
+    <td>-12.7037</td>
+    <td>29.6419</td>
+</tr>
+
+<tr>
+    <td>9</td>
+    <td>-0.3333</td>
+    <td>0.1111</td>
+    <td>-0.0370</td>
+    <td>0.0123</td>
+</tr>
+
+<tr>
+    <td>13</td>
+    <td>3.6667</td>
+    <td>13.4444</td>
+    <td>49.2963</td>
+    <td>180.7531</td>
+</tr>
+
+<tr>
+    <td>19</td>
+    <td>9.6667</td>
+    <td>93.4444</td>
+    <td>902.9630</td>
+    <td>8728.6420</td>
+</tr>
+
+<tr>
+    <th>Total</th>
+    <th></th>
+    <th>171.3333</th>
+    <th>604.1111</th>
+    <th>10899.8889</th>
+</tr>
+```
+
+</table>
+
+<h2>10. Sample Variance</h2>
+
+<div class="formula">
+    Sample Variance:
+    s² = Σ(x − x̄)² / (n − 1)
+</div>
+
+<div class="calculation">
+    s² = 171.3333 / (6 − 1)
+</div>
+
+<div class="calculation">
+    s² = 171.3333 / 5
+</div>
+
+<div class="calculation">
+    s² = 34.2667
+</div>
+
+<div class="answer">
+    <span class="result">Answer: Sample Variance = 34.2667</span>
+</div>
+
+<h2>11. Sample Standard Deviation</h2>
+
+<div class="formula">
+    s = √[Σ(x − x̄)² / (n − 1)]
+</div>
+
+<div class="calculation">
+    s = √34.2667
+</div>
+
+<div class="calculation">
+    s = 5.8538
+</div>
+
+<div class="answer">
+    <span class="result">Answer: Standard Deviation = 5.8538</span>
+</div>
+
+<h2>12. Standard Error</h2>
+
+<div class="formula">
+    SE = s / √n
+</div>
+
+<div class="calculation">
+    SE = 5.8538 / √6
+</div>
+
+<div class="calculation">
+    √6 ≈ 2.4495
+</div>
+
+<div class="calculation">
+    SE = 5.8538 / 2.4495
+</div>
+
+<div class="calculation">
+    SE ≈ 2.3898
+</div>
+
+<div class="answer">
+    <span class="result">Answer: Standard Error = 2.3898</span>
+</div>
+
+<h2>13. Skewness</h2>
+
+<p>
+    We use the <strong>sample skewness formula</strong>, which is the
+    formula corresponding to Excel's <code>SKEW</code>.
+</p>
+
+<div class="formula">
+    Skewness =
+    [n / ((n − 1)(n − 2))]
+    × [Σ(x − x̄)³ / s³]
+</div>
+
+<p>From the calculation table:</p>
+
+<div class="calculation">
+    Σ(x − x̄)³ = 604.1111
+</div>
+
+<p>We already calculated:</p>
+
+<div class="calculation">
+    s = 5.8538
+</div>
+
+<p>Therefore:</p>
+
+<div class="calculation">
+    s³ ≈ 200.54
+</div>
+
+<p>Substitute into the formula:</p>
+
+<div class="calculation">
+    Skewness =
+    [6 / ((6 − 1)(6 − 2))]
+    × [604.1111 / 200.54]
+</div>
+
+<div class="calculation">
+    = (6 / 20) × 3.012
+</div>
+
+<div class="calculation">
+    = 0.3 × 3.012
+</div>
+
+<div class="calculation">
+    ≈ 0.9040
+</div>
+
+<div class="answer">
+    <span class="result">Answer: Skewness = 0.9040</span>
+</div>
+
+<div class="interpretation">
+    <strong>Interpretation:</strong>
+    Since skewness is positive (0.9040), the distribution is
+    <strong>positively skewed / right-skewed</strong>.
+    The larger value 19 pulls the distribution toward the right.
+</div>
+
+<h2>14. Kurtosis</h2>
+
+<p>
+    We use the <strong>sample excess kurtosis formula</strong>,
+    corresponding to Excel's <code>KURT</code> function.
+</p>
+
+<div class="formula">
+    Kurtosis =
+    [n(n + 1) / ((n − 1)(n − 2)(n − 3))]
+    × [Σ(x − x̄)⁴ / s⁴]
+    − [3(n − 1)² / ((n − 2)(n − 3))]
+</div>
+
+<p>From the table:</p>
+
+<div class="calculation">
+    Σ(x − x̄)⁴ = 10899.8889
+</div>
+
+<p>We have:</p>
+
+<div class="calculation">
+    s = 5.8538
+</div>
+
+<div class="calculation">
+    s⁴ ≈ 1173.13
+</div>
+
+<p>Substitute the values:</p>
+
+<div class="calculation">
+    Kurtosis =
+    [6(7) / (5 × 4 × 3)]
+    × [10899.8889 / 1173.13]
+    − [3(5²) / (4 × 3)]
+</div>
+
+<div class="calculation">
+    = (42 / 60) × 9.291 − 75 / 12
+</div>
+
+<div class="calculation">
+    = 0.7 × 9.291 − 6.25
+</div>
+
+<div class="calculation">
+    ≈ 6.5037 − 6.25
+</div>
+
+<div class="calculation">
+    ≈ 0.2503
+</div>
+
+<div class="answer">
+    <span class="result">Answer: Kurtosis = 0.2503</span>
+</div>
+
+<div class="interpretation">
+    <strong>Interpretation:</strong>
+    The excess kurtosis is positive (0.2503), so the data are
+    <strong>slightly leptokurtic</strong> compared with a normal
+    distribution.
+</div>
+
+<h2>15. Final Descriptive Statistics</h2>
+
+<table>
+    <tr>
+        <th>Statistic</th>
+        <th>Manual Answer</th>
+    </tr>
+
+```
+<tr>
+    <td>Mean</td>
+    <td><strong>9.3333</strong></td>
+</tr>
+
+<tr>
+    <td>Standard Error</td>
+    <td><strong>2.3898</strong></td>
+</tr>
+
+<tr>
+    <td>Median</td>
+    <td><strong>8</strong></td>
+</tr>
+
+<tr>
+    <td>Mode</td>
+    <td><strong>No Mode</strong></td>
+</tr>
+
+<tr>
+    <td>Standard Deviation</td>
+    <td><strong>5.8538</strong></td>
+</tr>
+
+<tr>
+    <td>Sample Variance</td>
+    <td><strong>34.2667</strong></td>
+</tr>
+
+<tr>
+    <td>Kurtosis (Excess)</td>
+    <td><strong>0.2503</strong></td>
+</tr>
+
+<tr>
+    <td>Skewness</td>
+    <td><strong>0.9040</strong></td>
+</tr>
+
+<tr>
+    <td>Range</td>
+    <td><strong>16</strong></td>
+</tr>
+
+<tr>
+    <td>Minimum</td>
+    <td><strong>3</strong></td>
+</tr>
+
+<tr>
+    <td>Maximum</td>
+    <td><strong>19</strong></td>
+</tr>
+
+<tr>
+    <td>Sum</td>
+    <td><strong>56</strong></td>
+</tr>
+
+<tr>
+    <td>Count</td>
+    <td><strong>6</strong></td>
+</tr>
+```
+
+</table>
+
+<div class="summary">
+
+<h2>FINAL ANSWER</h2>
+
+<p>
+For the dataset:
+</p>
+
+<p style="text-align:center; font-size:22px; font-weight:bold;">
+3, 5, 7, 9, 13, 19
+</p>
+
+<p>
+The descriptive statistics are:
+</p>
+
+<ul>
+    <li><strong>Mean = 9.3333</strong></li>
+    <li><strong>Standard Error = 2.3898</strong></li>
+    <li><strong>Median = 8</strong></li>
+    <li><strong>Mode = No Mode</strong></li>
+    <li><strong>Standard Deviation = 5.8538</strong></li>
+    <li><strong>Sample Variance = 34.2667</strong></li>
+    <li><strong>Kurtosis = 0.2503</strong></li>
+    <li><strong>Skewness = 0.9040</strong></li>
+    <li><strong>Range = 16</strong></li>
+    <li><strong>Minimum = 3</strong></li>
+    <li><strong>Maximum = 19</strong></li>
+    <li><strong>Sum = 56</strong></li>
+    <li><strong>Count = 6</strong></li>
+</ul>
+
+<p>
+<strong>Overall interpretation:</strong> The dataset has a mean of
+9.3333 and a standard deviation of 5.8538, indicating considerable
+variation around the mean. The positive skewness of 0.9040 indicates
+that the distribution is right-skewed, mainly because of the relatively
+large value 19. The positive excess kurtosis of 0.2503 indicates a
+slightly heavier-tailed distribution than a normal distribution.
+</p>
+
+</div>
+
+<div class="footer">
+    Descriptive Statistics – Manual Calculation
+</div>
+
+</div>
+
+</body>
+</html>
